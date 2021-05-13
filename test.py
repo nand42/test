@@ -7,39 +7,46 @@ import os
 
 clear = lambda: os.system("clear")
 
-clear()
+start = "via"
 
-print("... ... ... ... ... ... ... ... .. .. .. .. .. .. . . . . . . .")
-print("Hello!")
-start = input("Premi INVIO per iniziare")
-clear()
-print("... ... ... ... ... ... ... ... .. .. .. .. .. .. . . . . . . .")
-print("Rispondi al seguente quesito per sapere chi sei \n")
-print("... ... ... ... ... ... ... ... .. .. .. .. .. .. . . . . . . .")
+while start != "exit":
 
-a = random.randrange(0,100,1)
-b = a
-while a == b:
-	b = random.randrange(0,100,1)
+	clear()
 
-n = str( a + b )
+	print("... ... ... ... ... ... ... ... .. .. .. .. .. .. . . . . . . .")
+	print("Hello!")
+	start = input("Premi INVIO per iniziare")
+	clear()
+	print("... ... ... ... ... ... ... ... .. .. .. .. .. .. . . . . . . .")
+	print("Rispondi al seguente quesito per sapere chi sei \n")
+	print("... ... ... ... ... ... ... ... .. .. .. .. .. .. . . . . . . .")
 
-time.sleep(1)
+	a = random.randrange(0,100,1)
+	b = a
+	while a == b:
+		b = random.randrange(0,100,1)
 
-r = str(input( str(a) + " + " + str(b) + " = "))
+	n = str( a + b )
 
-time.sleep(1)
-print("\n... ... ... ... ... ... ... ... .. .. .. .. .. .. . . . . . . .")
-time.sleep(1)
+	time.sleep(1)
 
-if ( r == n ):
-	print("------------------> Bene, sei una persona in gamba.")
-else:
-	print("------------------> Sei una capra.")
-	print("Soluzione: " + str(a) + " + " + str(b) + " = " + n)
+	r = str(input( str(a) + " + " + str(b) + " = "))
+	
+	time.sleep(1)
+	print("\n... ... ... ... ... ... ... ... .. .. .. .. .. .. . . . . . . .")
+	time.sleep(1)
 
-print("\n... ... ... ... ... ... ... ... .. .. .. .. .. .. . . . . . . .")
+	if ( r == n ):
+		print("------------------> Bene, sei una persona in gamba.")
+	else:
+		print("------------------> Sei una capra.")
+		print("Soluzione: " + str(a) + " + " + str(b) + " = " + n)
 
-commento = input("lascia un commento: ")
+	print("\n... ... ... ... ... ... ... ... .. .. .. .. .. .. . . . . . . .")
 
-clear()
+	commento = input("lascia un commento: ")
+
+	if commento == "exit":
+		break
+	
+	clear()
