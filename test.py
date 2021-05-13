@@ -11,6 +11,9 @@ clear()
 
 print("... ... ... ... ... ... ... ... .. .. .. .. .. .. . . . . . . .")
 print("Hello!")
+start = input("Premi INVIO per iniziare")
+clear()
+print("... ... ... ... ... ... ... ... .. .. .. .. .. .. . . . . . . .")
 print("Rispondi al seguente quesito per sapere chi sei \n")
 print("... ... ... ... ... ... ... ... .. .. .. .. .. .. . . . . . . .")
 
