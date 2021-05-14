@@ -6,8 +6,9 @@ import time
 import os
 import json
 import io
+import csv
 
-FILENAME = "test_risposte.json"
+FILENAME = "test_risposte.csv"
 PATH = ""
 """
 def startupCheck():
@@ -24,16 +25,11 @@ clear = lambda: os.system("clear")
 
 
 def writefile(new_data, filename=FILENAME):
-	with open(filename, 'r+', encoding='utf-8') as file:
-		# load existing file
-		file_data = json.load(file)
-		# join new data with existing data
-		file_data.update(new_data)
-		# set file position at offset
-		file.seek(0)
-		# write all data to file json
-		json.dump(file_data, file)
-
+	with open(filename, 'r+b') as file:
+		# header = next(csv.reader(file))
+		dict_writer = csv.DictWriter(file, -999)
+		dict_writer.writerow(new_data)
+		
 start = "via"
 i = 0
 
