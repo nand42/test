@@ -9,17 +9,27 @@ import json
 clear = lambda: os.system("clear")
 
 
-def writefile(list, filename="test_risposte.txt"):
-	with open(filename, 'w') as filehandle:
-		json.dump(list, filehandle)
+def writefile(new_data, filename="test_risposte.json"):
+	with open(filename, 'r+') as file:
+		# load existing file
+		file_data = json.load(file)
+		# join new data with existing data
+		file_data.update(new_data)
+		# set file position at offset
+		file.seek(0)
+		# write all data to file json
+		json.dump(file_data, file)
 
 start = "via"
+i = 0
 
 while start != "exit":
 
+	i += 1
+
 	clear()
 
-	list_risp = []
+	list_risp = {'index:': i}
 	
 	print("... ... ... ... ... ... ... ... .. .. .. .. .. .. . . . . . . .")
 	print("Hello!")
@@ -38,13 +48,13 @@ while start != "exit":
 
 	addizione = str(a) + " + " + str(b) + " = "
 	
-	list_risp.append("addizione: " + addizione + str(n))
+	list_risp["addizione"] = addizione + str(n)
 	
 	time.sleep(1)
 
 	risp = str(input( addizione ))
 
-	list_risp.append("risposta: " + risp)
+	list_risp["risposta"] =  risp
 	
 	if risp == "exit":
 		writefile(list_risp)
@@ -55,17 +65,17 @@ while start != "exit":
 	time.sleep(1)
 
 	if ( risp == n ):
-		list_risp.append("gauss")
+		list_risp["who"] = "gauss"
 		print("------------------> Bene, sei una persona in gamba.")
 	else:
-		list_risp.append("capra")
+		list_risp["who"] = "capra" 
 		print("------------------> Sei una capra.")
 		print("Soluzione: " + str(a) + " + " + str(b) + " = " + n)
 
 	print("\n... ... ... ... ... ... ... ... .. .. .. .. .. .. . . . . . . .")
 
 	commento = input("lascia un commento: ")
-	list_risp.append("commento: " + commento)
+	list_risp["commento"] = commento
 
 	writefile(list_risp)
 	
