@@ -9,37 +9,30 @@ import io
 import csv
 
 FILENAME = "test_risposte.csv"
-PATH = ""
-"""
-def startupCheck():
-    if os.path.isfile(PATH) and os.access(PATH, os.R_OK):
-        # checks if file exists
-        print ("File exists and is readable")
-    else:
-        print ("Either file is missing or is not readable, creating file...")
-        with io.open(os.path.join(FILENAME, 'w') as db_file:
-            db_file.write(json.dumps({}))
-"""
+
 
 clear = lambda: os.system("clear")
 
 
+# aggiungere funzione di controllo del file .csv
+
+
 def writefile(new_data, filename=FILENAME):
-	with open(filename, 'r+b') as file:
-		# header = next(csv.reader(file))
-		dict_writer = csv.DictWriter(file, -999)
-		dict_writer.writerow(new_data)
-		
+	with open(filename, 'a', newline='') as file:
+		wr = csv.writer(file, dialect='excel')
+		wr.writerow(new_data)		
+
+
 start = "via"
 i = 0
+list_risp = []
 
 while start != "exit":
 
 	i += 1
-
 	clear()
 
-	list_risp = {'index:': i}
+	list_risp = [str(i)]
 	
 	print("... ... ... ... ... ... ... ... .. .. .. .. .. .. . . . . . . .")
 	print("Hello!")
@@ -58,13 +51,13 @@ while start != "exit":
 
 	addizione = str(a) + " + " + str(b) + " = "
 	
-	list_risp["addizione"] = addizione + str(n)
+	list_risp.append(addizione + str(n))
 	
 	time.sleep(1)
 
 	risp = str(input( addizione ))
 
-	list_risp["risposta"] =  risp
+	list_risp.append(risp)
 	
 	if risp == "exit":
 		writefile(list_risp)
@@ -75,17 +68,17 @@ while start != "exit":
 	time.sleep(1)
 
 	if ( risp == n ):
-		list_risp["who"] = "gauss"
+		list_risp.append("gauss")
 		print("------------------> Bene, sei una persona in gamba.")
 	else:
-		list_risp["who"] = "capra" 
+		list_risp.append("capra")
 		print("------------------> Sei una capra.")
 		print("Soluzione: " + str(a) + " + " + str(b) + " = " + n)
 
 	print("\n... ... ... ... ... ... ... ... .. .. .. .. .. .. . . . . . . .")
 
 	commento = input("lascia un commento: ")
-	list_risp["commento"] = commento
+	list_risp.append(commento)
 
 	writefile(list_risp)
 	
