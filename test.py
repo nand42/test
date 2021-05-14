@@ -5,12 +5,26 @@ import random
 import time
 import os
 import json
+import io
+
+FILENAME = "test_risposte.json"
+PATH = ""
+"""
+def startupCheck():
+    if os.path.isfile(PATH) and os.access(PATH, os.R_OK):
+        # checks if file exists
+        print ("File exists and is readable")
+    else:
+        print ("Either file is missing or is not readable, creating file...")
+        with io.open(os.path.join(FILENAME, 'w') as db_file:
+            db_file.write(json.dumps({}))
+"""
 
 clear = lambda: os.system("clear")
 
 
-def writefile(new_data, filename="test_risposte.json"):
-	with open(filename, 'r+') as file:
+def writefile(new_data, filename=FILENAME):
+	with open(filename, 'r+', encoding='utf-8') as file:
 		# load existing file
 		file_data = json.load(file)
 		# join new data with existing data
